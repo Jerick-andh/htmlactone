@@ -83,6 +83,12 @@ body {
     margin: 0 auto; 
 }
 
+.project-card .project-image .project-img {
+    height: 200px !important;
+    object-fit: cover;
+    width: 100%;
+}
+
 .goal-text {
     color: rgba(102, 102, 102, 1);
     font-style: italic;
