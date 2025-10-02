@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+</head>
+<body>
+    <h2>Grade Calculator</h2>
+    <p>Use the input fields below to enter 4 grades and calculate the average. Based on the average:</p>
+    <ul>
+        <li>Less than 60: "Failed"</li>
+        <li>60 to 79: "Good"</li>
+        <li>80 to 89: "Very Good"</li>
+        <li>90 to 100: "Excellent"</li>
+    </ul>
+
+    <div>
+        <label for="grade1">Grade 1:</label>
+        <input type="number" id="grade1" min="0" max="100" placeholder="Enter grade 1">
+    </div>
+    <br>
+
+    <div>
+        <label for="grade2">Grade 2:</label>
+        <input type="number" id="grade2" min="0" max="100" placeholder="Enter grade 2">
+    </div>
+    <br>
+
+    <div>
+        <label for="grade3">Grade 3:</label>
+        <input type="number" id="grade3" min="0" max="100" placeholder="Enter grade 3">
+    </div>
+    <br>
+
+    <div>
+        <label for="grade4">Grade 4:</label>
+        <input type="number" id="grade4" min="0" max="100" placeholder="Enter grade 4">
+    </div>
+    <br>
+
+    <div>
+        <label for="average">Average:</label>
+        <input type="text" id="average" readonly placeholder="Calculated average will appear here">
+    </div>
+    <br>
+
+    <div>
+        <label for="result">Result:</label>
+        <input type="text" id="result" readonly placeholder="Grade result will appear here">
+    </div>
+    <br>
+
+    <button onclick="calculateGrade()">Calculate</button>
+
+    <script>
+        function calculateGrade() {
+            const grade1 = document.getElementById('grade1').value;
+            const grade2 = document.getElementById('grade2').value;
+            const grade3 = document.getElementById('grade3').value;
+            const grade4 = document.getElementById('grade4').value;
+
+            if (!grade1 || !grade2 || !grade3 || !grade4) {
+                alert('Please fill out all grade fields before calculating.');
+                return;
+            }
+
+            const g1 = Number(grade1);
+            const g2 = Number(grade2);
+            const g3 = Number(grade3);
+            const g4 = Number(grade4);
+
+            if (g1 < 0 || g1 > 100 || g2 < 0 || g2 > 100 || g3 < 0 || g3 > 100 || g4 < 0 || g4 > 100) {
+                alert('Please enter grades between 0 and 100.');
+                return;
+            }
+
+            const average = (g1 + g2 + g3 + g4) / 4;
+
+            var result;
+            if (average < 60) {
+                result = "Failed";
+            } else if (average >= 60 && average <= 79) {
+                result = "Good";
+            } else if (average >= 80 && average <= 89) {
+                result = "Very Good";
+            } else if (average >= 90 && average <= 100) {
+                result = "Excellent";
+            }
+
+            document.getElementById('average').value = average.toFixed(2);
+            document.getElementById('result').value = result;
+        }
+    </script>
+</body>
+</html>

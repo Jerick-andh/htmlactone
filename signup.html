@@ -7,6 +7,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 </head>
 <body>
     <body background="https://images6.alphacoders.com/131/thumb-1920-1311932.png"></body>
@@ -106,5 +108,74 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#signupForm').validate({
+                rules: {
+                    firstName: {
+                        required: true,
+                        minlength: 2
+                    },
+                    lastName: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6
+                    },
+                    confirmPassword: {
+                        required: true,
+                        equalTo: "#password"
+                    },
+                    gender: {
+                        required: true
+                    },
+                    terms: {
+                        required: true
+                    }
+                },
+                messages: {
+                    firstName: {
+                        required: "Please enter your first name",
+                        minlength: "First name must be at least 2 characters"
+                    },
+                    lastName: {
+                        required: "Please enter your last name",
+                        minlength: "Last name must be at least 2 characters"
+                    },
+                    email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address"
+                    },
+                    password: {
+                        required: "Please enter a password",
+                        minlength: "Password must be at least 6 characters long"
+                    },
+                    confirmPassword: {
+                        required: "Please confirm your password",
+                        equalTo: "Passwords do not match"
+                    },
+                    gender: {
+                        required: "Please select your gender"
+                    },
+                    terms: {
+                        required: "You must agree to the terms and conditions"
+                    }
+                },
+                errorElement: 'div',
+                errorClass: 'text-danger small',
+                submitHandler: function(form) {
+                    alert('Registration successful! Please login to continue.');
+                    window.location.href = "try.html";
+                }
+            });
+        });
+    </script>
 </body>
 </html>

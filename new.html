@@ -7,6 +7,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="news.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -21,6 +23,7 @@
                     <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">My Project</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -28,6 +31,15 @@
 
     <section id="home" class="hero-section">
         <div class="container">
+            <div class="row" style="padding-top: 80px;">
+                <div class="col-12">
+                    <div class="alert alert-success alert-dismissible fade show text-center" role="alert" id="welcomeBanner" style="display: none; position: relative; z-index: 1000;">
+                        <strong><i class="fas fa-check-circle me-2"></i>Welcome, <span id="usernameBanner"></span>!</strong> You have successfully logged in.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6 text-center text-lg-start">
                     <h1 class="display-3 fw-bold mb-3 animate-fade-in">Hi, I'm Jerick</h1>
@@ -157,7 +169,8 @@
             </div>
         </div>
     </section>
-                    <section id="projects" class="py-5">
+
+    <section id="projects" class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-5">
@@ -201,6 +214,7 @@
             </div>
         </div>
     </section>
+
     <section id="contact" class="py-5 bg-dark text-light">
         <div class="container">
             <div class="row">
@@ -235,18 +249,18 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <form class="contact-form">
+                            <form id="contactForm" class="contact-form">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                    <input type="text" class="form-control" name="contactName" placeholder="Your Name" autocomplete="name" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                    <input type="email" class="form-control" name="contactEmail" placeholder="Your Email" autocomplete="email" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Subject" required>
+                                    <input type="text" class="form-control" name="contactSubject" placeholder="Subject" autocomplete="off" required>
                                 </div>
                                 <div class="mb-3">
-                                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                                    <textarea class="form-control" rows="5" name="contactMessage" placeholder="Your Message" autocomplete="off" required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
                             </form>

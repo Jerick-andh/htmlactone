@@ -7,6 +7,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 </head>
 <body>
     <body background="https://images6.alphacoders.com/134/thumb-1920-1347028.jpeg"></body>
@@ -28,7 +30,7 @@
                                     <span class="input-group-text">
                                         <i class="fas fa-envelope"></i>
                                     </span>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" autocomplete="email" required>
                                 </div>
                             </div>
                             
@@ -38,7 +40,7 @@
                                     <span class="input-group-text">
                                         <i class="fas fa-lock"></i>
                                     </span>
-                                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
                                 </div>
                             </div>
                             
@@ -50,7 +52,7 @@
                             </div>
                             
                             <button type="submit" class="btn btn-primary w-100 mb-3">
-                                <i class="fas fa-sign-in-alt me-2"></i>Login
+                                <i class="fas fa-sign-in-alt me-2"></i> Login
                             </button>
                             
                             <div class="text-center">
@@ -77,5 +79,72 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const email = $('#email').val().trim();
+                const password = $('#password').val().trim();
+                
+                console.log('Login attempt:', email, password); 
+                
+                if (!email || !password) {
+                    alert('Please fill in all fields');
+                    return false;
+                }
+                
+                if (!isValidEmail(email)) {
+                    alert('Please enter a valid email address');
+                    return false;
+                }
+                
+                if (email === "Jerick@Jerick.com" && password === "12345") {
+                    const username = email.split('@')[0];
+  
+                    sessionStorage.setItem('loggedInUser', username);
+                    
+                    alert('Login successful! Welcome ' + username + '!');
+                    window.location.href = "new.html";
+                } else {
+                    alert('Invalid credentials! Try: Jerick@Jerick.com / 12345');
+                }
+                
+                return false;
+            });
+            
+            $('#loginForm').validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    }
+                },
+                messages: {
+                    email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address"
+                    },
+                    password: {
+                        required: "Please enter your password",
+                        minlength: "Password must be at least 5 characters long"
+                    }
+                },
+                errorElement: 'div',
+                errorClass: 'text-danger small'
+            });
+        });
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+    </script>
 </body>
 </html>
