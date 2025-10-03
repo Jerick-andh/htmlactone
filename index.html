@@ -24,6 +24,12 @@
                         </div>
                         
                         <form id="loginForm">
+                            <div class="alert alert-info mb-3" role="alert">
+                                <i class="fas fa-info-circle"></i> Demo Login Credentials<br>
+                                Username: Jerick@Jerick.com<br>
+                                Password: 12345
+                            </div>
+                            
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <div class="input-group">
@@ -107,8 +113,6 @@
                     
                     alert('Login successful! Welcome ' + username + '!');
                     window.location.href = "new.html";
-                } else {
-                    alert('Invalid credentials! Try: Jerick@Jerick.com / 12345');
                 }
                 
                 return false;
@@ -144,7 +148,6 @@
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         }
-    </script>
     </script>
 </body>
 </html>
